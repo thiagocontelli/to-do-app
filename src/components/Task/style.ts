@@ -17,11 +17,6 @@ export const styles = StyleSheet.create({
 		marginRight: 24,
 		marginBottom: 8,
 	},
-	text: {
-		fontSize: 14,
-		color: '#F2F2F2',
-		width: 220,
-	},
 	buttonText: {
 		width: 32,
 		height: 32,

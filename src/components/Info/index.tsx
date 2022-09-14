@@ -3,9 +3,10 @@ import { styles } from './style';
 
 interface Props {
 	created: number;
+	concludedCounter: number;
 }
 
-export function Info({ created }: Props) {
+export function Info({ created, concludedCounter }: Props) {
 	return (
 		<View style={styles.container}>
 			<View style={styles.infoContainer}>
@@ -14,7 +15,7 @@ export function Info({ created }: Props) {
 			</View>
 			<View style={styles.infoContainer}>
 				<Text style={styles.info2}>Concluídas</Text>
-				<Text style={styles.counter}>0</Text>
+				<Text style={styles.counter}>{concludedCounter}</Text>
 			</View>
 		</View>
 	);
