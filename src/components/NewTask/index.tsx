@@ -10,7 +10,7 @@ export function NewTask() {
 				placeholderTextColor={'#808080'}
 			/>
 			<TouchableOpacity style={styles.addButton}>
-				<Text>+</Text>
+				<Text style={styles.buttonText}>+</Text>
 			</TouchableOpacity>
 		</View>
 	);
