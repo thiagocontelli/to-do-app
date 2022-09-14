@@ -4,10 +4,11 @@ import { Trash } from 'phosphor-react-native';
 import { styles } from './style';
 
 interface Props {
-	name: string;
+	taskDescription: string;
+	handleRemoveTask: (taskDescription: string) => void;
 }
 
-export function Task({ name }: Props) {
+export function Task({ taskDescription, handleRemoveTask }: Props) {
 	return (
 		<View style={styles.container}>
 			<BouncyCheckbox
@@ -16,8 +17,8 @@ export function Task({ name }: Props) {
 				innerIconStyle={{ borderWidth: 1 }}
 				onPress={(isChecked: boolean) => {}}
 			/>
-			<Text style={styles.text}>{name}</Text>
-			<TouchableOpacity>
+			<Text style={styles.text}>{taskDescription}</Text>
+			<TouchableOpacity onPress={() => handleRemoveTask(taskDescription)}>
 				<Text style={styles.buttonText}>
 					<Trash size={20} color="#808080" />
 				</Text>

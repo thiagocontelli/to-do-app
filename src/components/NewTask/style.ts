@@ -14,6 +14,7 @@ export const styles = StyleSheet.create({
 		borderRadius: 6,
 		fontSize: 16,
 		marginRight: 4,
+		color: '#808080',
 	},
 	addButton: {
 		height: 52,
