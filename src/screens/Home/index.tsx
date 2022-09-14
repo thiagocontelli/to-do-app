@@ -69,9 +69,7 @@ export function Home() {
 			});
 
 			setTasks(newTasks);
-		}
-
-		if (taskIsConcluded === false) {
+		} else {
 			setConcludedCounter((prevState) => (prevState += 1));
 			const newTasks = tasks.map((el, i, arr) => {
 				if (el.id === taskId) {
