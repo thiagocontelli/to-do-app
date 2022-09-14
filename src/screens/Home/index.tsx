@@ -9,6 +9,7 @@ import { styles } from './style';
 export function Home() {
 	const [tasks, setTasks] = useState<string[]>([]);
 	const [inputText, setInputText] = useState('');
+	const [created, setCreated] = useState(0);
 
 	function onInputChange(text: string) {
 		setInputText(text);
@@ -20,6 +21,7 @@ export function Home() {
 		} else {
 			setTasks((prevState) => [...prevState, inputText]);
 			setInputText('');
+			setCreated(tasks.length + 1);
 		}
 
 		inputText === '' &&
@@ -34,10 +36,12 @@ export function Home() {
 			},
 			{
 				text: 'Sim',
-				onPress: () =>
+				onPress: () => {
 					setTasks((prevState) =>
 						prevState.filter((task) => task !== taskDescription)
-					),
+					);
+					setCreated(tasks.length - 1);
+				},
 			},
 		]);
 	}
@@ -50,7 +54,7 @@ export function Home() {
 				handleAddTask={handleAddTask}
 				inputText={inputText}
 			/>
-			<Info />
+			<Info created={created} />
 			<TaskList tasks={tasks} handleRemoveTask={handleRemoveTask} />
 		</View>
 	);
