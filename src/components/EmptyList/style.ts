@@ -12,9 +12,6 @@ export const styles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
-	icon: {
-		fontSize: 50,
-	},
 	title: {
 		color: '#808080',
 		fontWeight: 'bold',
