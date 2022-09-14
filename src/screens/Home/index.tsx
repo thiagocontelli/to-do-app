@@ -51,17 +51,18 @@ export function Home() {
 						prevState.filter((task) => task.id !== taskId)
 					);
 					setCreated(tasks.length - 1);
-					setConcludedCounter((prevState) => (prevState -= 1));
+					concludedCounter > 0 &&
+						setConcludedCounter((prevState) => (prevState -= 1));
 				},
 			},
 		]);
 	}
 
 	function handleConcluded(taskIsConcluded: boolean, taskId: string) {
-		if (taskIsConcluded) {
+		if (taskIsConcluded && concludedCounter > 0) {
 			setConcludedCounter((prevState) => (prevState -= 1));
 
-			const newTasks = tasks.map((el, i, arr) => {
+			const newTasks = tasks.map((el) => {
 				if (el.id === taskId) {
 					return { ...el, isConcluded: false };
 				}
