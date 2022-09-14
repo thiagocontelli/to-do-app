@@ -2,6 +2,7 @@ import { View } from 'react-native';
 import { Header } from '../../components/Header';
 import { Info } from '../../components/Info';
 import { NewTask } from '../../components/NewTask';
+import { TaskList } from '../../components/TaskList';
 import { styles } from './style';
 
 export function Home() {
@@ -10,6 +11,7 @@ export function Home() {
 			<Header />
 			<NewTask />
 			<Info />
+			<TaskList />
 		</View>
 	);
 }

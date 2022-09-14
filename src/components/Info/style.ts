@@ -7,6 +7,7 @@ export const styles = StyleSheet.create({
 		marginLeft: 24,
 		marginRight: 24,
 		marginTop: 32,
+		marginBottom: 20,
 	},
 	infoContainer: {
 		flexDirection: 'row',
