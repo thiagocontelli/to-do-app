@@ -25,8 +25,8 @@ export const styles = StyleSheet.create({
 	buttonText: {
 		width: 32,
 		height: 32,
-		borderRadius: 4,
-		backgroundColor: '#333333',
+		// borderRadius: 4,
+		// backgroundColor: '#333333',
 		textAlign: 'center',
 		textAlignVertical: 'center',
 	},

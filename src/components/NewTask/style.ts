@@ -23,8 +23,4 @@ export const styles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
-	buttonText: {
-		color: '#FFFFFF',
-		fontSize: 24,
-	},
 });

@@ -1,5 +1,6 @@
 import { View, Text, TouchableOpacity } from 'react-native';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
+import { Trash } from 'phosphor-react-native';
 import { styles } from './style';
 
 interface Props {
@@ -17,7 +18,9 @@ export function Task({ name }: Props) {
 			/>
 			<Text style={styles.text}>{name}</Text>
 			<TouchableOpacity>
-				<Text style={styles.buttonText}>🗑</Text>
+				<Text style={styles.buttonText}>
+					<Trash size={20} color="#808080" />
+				</Text>
 			</TouchableOpacity>
 		</View>
 	);

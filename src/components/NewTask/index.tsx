@@ -1,4 +1,5 @@
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { PlusCircle } from 'phosphor-react-native';
 import { styles } from './style';
 
 export function NewTask() {
@@ -10,7 +11,7 @@ export function NewTask() {
 				placeholderTextColor={'#808080'}
 			/>
 			<TouchableOpacity style={styles.addButton}>
-				<Text style={styles.buttonText}>+</Text>
+				<PlusCircle size={20} color="#ffffff" />
 			</TouchableOpacity>
 		</View>
 	);
