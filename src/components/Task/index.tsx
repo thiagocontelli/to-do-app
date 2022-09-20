@@ -4,20 +4,14 @@ import { Trash } from 'phosphor-react-native';
 import { styles } from './style';
 
 interface Props {
-	taskId: string;
-	taskIsConcluded: boolean;
 	taskDescription: string;
 	handleRemoveTask: (taskDescription: string) => void;
 	checkboxState: boolean;
 	setCheckboxState: React.Dispatch<React.SetStateAction<boolean>>;
-	concludedCounter: number;
-	setConcludedCounter: React.Dispatch<React.SetStateAction<number>>;
 	handleCompleteTask: (taskDescription: string) => void;
 }
 
 export function Task({
-	taskIsConcluded,
-	taskId,
 	taskDescription,
 	handleRemoveTask,
 	checkboxState,
@@ -42,7 +36,7 @@ export function Task({
 					width: 220,
 				}}
 			/>
-			<TouchableOpacity onPress={() => handleRemoveTask(taskId)}>
+			<TouchableOpacity onPress={() => handleRemoveTask(taskDescription)}>
 				<Text style={styles.buttonText}>
 					<Trash size={20} color="#808080" />
 				</Text>

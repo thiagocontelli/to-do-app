@@ -9,12 +9,10 @@ interface TaskData {
 }
 
 interface Props {
-	tasks: TaskData[];
+	tasks: string[];
 	handleRemoveTask: (taskDescription: string) => void;
 	checkboxState: boolean;
 	setCheckboxState: React.Dispatch<React.SetStateAction<boolean>>;
-	concludedCounter: number;
-	setConcludedCounter: React.Dispatch<React.SetStateAction<number>>;
 	handleCompleteTask: (taskDescription: string) => void;
 }
 
@@ -23,26 +21,20 @@ export function TaskList({
 	handleRemoveTask,
 	checkboxState,
 	setCheckboxState,
-	concludedCounter,
-	setConcludedCounter,
 	handleCompleteTask,
 }: Props) {
 	return (
 		<FlatList
 			data={tasks}
-			keyExtractor={(item) => item.id}
+			keyExtractor={(item) => item}
 			renderItem={({ item }) => (
 				<Task
-					key={item.id}
-					taskIsConcluded={item.isConcluded}
-					taskId={item.id}
-					taskDescription={item.description}
-					handleRemoveTask={handleRemoveTask}
+					key={item}
+					taskDescription={item}
+					handleRemoveTask={() => handleRemoveTask(item)}
 					checkboxState={checkboxState}
 					setCheckboxState={setCheckboxState}
 					handleCompleteTask={handleCompleteTask}
-					concludedCounter={concludedCounter}
-					setConcludedCounter={setConcludedCounter}
 				/>
 			)}
 			showsVerticalScrollIndicator={false}

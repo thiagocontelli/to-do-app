@@ -6,17 +6,10 @@ import { NewTask } from '../../components/NewTask';
 import { TaskList } from '../../components/TaskList';
 import { styles } from './style';
 
-interface TaskData {
-	description: string;
-	isConcluded: boolean;
-	id: string;
-}
-
 export function Home() {
-	const [tasks, setTasks] = useState<TaskData[]>([]);
+	const [tasks, setTasks] = useState<string[]>([]);
 	const [inputText, setInputText] = useState('');
 	const [created, setCreated] = useState(0);
-	const [concludedCounter, setConcludedCounter] = useState(0);
 	const [checkboxState, setCheckboxState] = useState(false);
 
 	const [completedTask, setCompletedTask] = useState<string[]>([]);
@@ -26,21 +19,18 @@ export function Home() {
 	}
 
 	function handleAddTask() {
-		if (inputText !== '') {
-			const newTask = {
-				description: inputText,
-				isConcluded: false,
-				id: String(Math.random()),
-			};
-			setTasks([...tasks, newTask]);
+		if (inputText.trim() !== '') {
+			setTasks([...tasks, inputText]);
 			setInputText('');
 			setCreated(tasks.length + 1);
+			setCheckboxState(false);
 		} else {
 			Alert.alert('Campo vazio', 'Você não pode adicionar uma tarefa vazia.');
+			setInputText('');
 		}
 	}
 
-	function handleRemoveTask(taskId: string) {
+	function handleRemoveTask(taskDescription: string) {
 		Alert.alert('Remover tarefa', 'Deseja remover tarefa?', [
 			{
 				text: 'Não',
@@ -48,38 +38,22 @@ export function Home() {
 			},
 			{
 				text: 'Sim',
-				onPress: () => {
-					setTasks((prevState) =>
-						prevState.filter((task) => task.id !== taskId)
-					);
-					setCreated(tasks.length - 1);
-					concludedCounter > 0 && setConcludedCounter(concludedCounter - 1);
-				},
+				onPress: () => removeTask(taskDescription),
 			},
 		]);
 	}
 
-	function handleCompleteTask(taskDescription: string) {
-		// if (taskIsConcluded) {
-		// 	setConcludedCounter(concludedCounter - 1);
-		// 	const newTasks = tasks.map((task) => {
-		// 		if (task.id === taskId) {
-		// 			return { ...task, isConcluded: false };
-		// 		}
-		// 		return task;
-		// 	});
-		// 	setTasks(newTasks);
-		// } else {
-		// 	setConcludedCounter(concludedCounter + 1);
-		// 	const newTasks = tasks.map((task) => {
-		// 		if (task.id === taskId) {
-		// 			return { ...task, isConcluded: true };
-		// 		}
-		// 		return task;
-		// 	});
-		// 	setTasks(newTasks);
-		// }
+	function removeTask(taskDescription: string) {
+		setTasks((prevState) =>
+			prevState.filter((task) => task !== taskDescription)
+		);
+		setCreated(tasks.length - 1);
+		setCompletedTask((prevState) =>
+			prevState.filter((task) => task !== taskDescription)
+		);
+	}
 
+	function handleCompleteTask(taskDescription: string) {
 		if (completedTask.includes(taskDescription)) {
 			const updatedCompletedTasks = completedTask.filter(
 				(task) => task !== taskDescription
@@ -98,15 +72,13 @@ export function Home() {
 				handleAddTask={handleAddTask}
 				inputText={inputText}
 			/>
-			<Info created={created} concludedCounter={completedTask.length} />
+			<Info created={tasks.length} concludedCounter={completedTask.length} />
 			<TaskList
 				tasks={tasks}
 				handleRemoveTask={handleRemoveTask}
 				checkboxState={checkboxState}
 				setCheckboxState={setCheckboxState}
 				handleCompleteTask={handleCompleteTask}
-				concludedCounter={concludedCounter}
-				setConcludedCounter={setConcludedCounter}
 			/>
 		</View>
 	);
