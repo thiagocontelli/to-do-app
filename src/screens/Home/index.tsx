@@ -72,7 +72,10 @@ export function Home() {
 				handleAddTask={handleAddTask}
 				inputText={inputText}
 			/>
-			<Info created={tasks.length} concludedCounter={completedTask.length} />
+			<Info
+				numberOfTasksCreated={tasks.length}
+				numberOfTasksCompleted={completedTask.length}
+			/>
 			<TaskList
 				tasks={tasks}
 				handleRemoveTask={handleRemoveTask}
