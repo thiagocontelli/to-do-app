@@ -12,7 +12,7 @@ interface Props {
 	setCheckboxState: React.Dispatch<React.SetStateAction<boolean>>;
 	concludedCounter: number;
 	setConcludedCounter: React.Dispatch<React.SetStateAction<number>>;
-	handleConcluded: (taskDescription: string) => void;
+	handleCompleteTask: (taskDescription: string) => void;
 }
 
 export function Task({
@@ -22,7 +22,7 @@ export function Task({
 	handleRemoveTask,
 	checkboxState,
 	setCheckboxState,
-	handleConcluded,
+	handleCompleteTask,
 }: Props) {
 	return (
 		<View style={styles.container}>
@@ -33,7 +33,7 @@ export function Task({
 				isChecked={checkboxState}
 				onPress={() => {
 					setCheckboxState(!checkboxState);
-					handleConcluded(taskDescription);
+					handleCompleteTask(taskDescription);
 				}}
 				text={taskDescription}
 				textStyle={{

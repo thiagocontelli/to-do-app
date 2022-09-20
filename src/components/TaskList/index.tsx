@@ -15,7 +15,7 @@ interface Props {
 	setCheckboxState: React.Dispatch<React.SetStateAction<boolean>>;
 	concludedCounter: number;
 	setConcludedCounter: React.Dispatch<React.SetStateAction<number>>;
-	handleConcluded: (taskDescription: string) => void;
+	handleCompleteTask: (taskDescription: string) => void;
 }
 
 export function TaskList({
@@ -25,7 +25,7 @@ export function TaskList({
 	setCheckboxState,
 	concludedCounter,
 	setConcludedCounter,
-	handleConcluded,
+	handleCompleteTask,
 }: Props) {
 	return (
 		<FlatList
@@ -40,7 +40,7 @@ export function TaskList({
 					handleRemoveTask={handleRemoveTask}
 					checkboxState={checkboxState}
 					setCheckboxState={setCheckboxState}
-					handleConcluded={handleConcluded}
+					handleCompleteTask={handleCompleteTask}
 					concludedCounter={concludedCounter}
 					setConcludedCounter={setConcludedCounter}
 				/>

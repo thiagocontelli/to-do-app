@@ -59,7 +59,7 @@ export function Home() {
 		]);
 	}
 
-	function handleConcluded(taskDescription: string) {
+	function handleCompleteTask(taskDescription: string) {
 		// if (taskIsConcluded) {
 		// 	setConcludedCounter(concludedCounter - 1);
 		// 	const newTasks = tasks.map((task) => {
@@ -104,7 +104,7 @@ export function Home() {
 				handleRemoveTask={handleRemoveTask}
 				checkboxState={checkboxState}
 				setCheckboxState={setCheckboxState}
-				handleConcluded={handleConcluded}
+				handleCompleteTask={handleCompleteTask}
 				concludedCounter={concludedCounter}
 				setConcludedCounter={setConcludedCounter}
 			/>
