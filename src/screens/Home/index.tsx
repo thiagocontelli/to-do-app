@@ -19,6 +19,8 @@ export function Home() {
 	const [concludedCounter, setConcludedCounter] = useState(0);
 	const [checkboxState, setCheckboxState] = useState(false);
 
+	const [completedTask, setCompletedTask] = useState<string[]>([]);
+
 	function onInputChange(text: string) {
 		setInputText(text);
 	}
@@ -51,35 +53,40 @@ export function Home() {
 						prevState.filter((task) => task.id !== taskId)
 					);
 					setCreated(tasks.length - 1);
-					concludedCounter > 0 &&
-						setConcludedCounter((prevState) => (prevState -= 1));
+					concludedCounter > 0 && setConcludedCounter(concludedCounter - 1);
 				},
 			},
 		]);
 	}
 
-	function handleConcluded(taskIsConcluded: boolean, taskId: string) {
-		if (taskIsConcluded && concludedCounter > 0) {
-			setConcludedCounter((prevState) => (prevState -= 1));
+	function handleConcluded(taskDescription: string) {
+		// if (taskIsConcluded) {
+		// 	setConcludedCounter(concludedCounter - 1);
+		// 	const newTasks = tasks.map((task) => {
+		// 		if (task.id === taskId) {
+		// 			return { ...task, isConcluded: false };
+		// 		}
+		// 		return task;
+		// 	});
+		// 	setTasks(newTasks);
+		// } else {
+		// 	setConcludedCounter(concludedCounter + 1);
+		// 	const newTasks = tasks.map((task) => {
+		// 		if (task.id === taskId) {
+		// 			return { ...task, isConcluded: true };
+		// 		}
+		// 		return task;
+		// 	});
+		// 	setTasks(newTasks);
+		// }
 
-			const newTasks = tasks.map((el) => {
-				if (el.id === taskId) {
-					return { ...el, isConcluded: false };
-				}
-				return el;
-			});
-
-			setTasks(newTasks);
+		if (completedTask.includes(taskDescription)) {
+			const updatedCompletedTasks = completedTask.filter(
+				(task) => task !== taskDescription
+			);
+			setCompletedTask(updatedCompletedTasks);
 		} else {
-			setConcludedCounter((prevState) => (prevState += 1));
-			const newTasks = tasks.map((el, i, arr) => {
-				if (el.id === taskId) {
-					return { ...el, isConcluded: true };
-				}
-				return el;
-			});
-
-			setTasks(newTasks);
+			setCompletedTask((prevState) => [...prevState, taskDescription]);
 		}
 	}
 
@@ -91,7 +98,7 @@ export function Home() {
 				handleAddTask={handleAddTask}
 				inputText={inputText}
 			/>
-			<Info created={created} concludedCounter={concludedCounter} />
+			<Info created={created} concludedCounter={completedTask.length} />
 			<TaskList
 				tasks={tasks}
 				handleRemoveTask={handleRemoveTask}

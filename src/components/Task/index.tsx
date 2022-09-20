@@ -12,7 +12,7 @@ interface Props {
 	setCheckboxState: React.Dispatch<React.SetStateAction<boolean>>;
 	concludedCounter: number;
 	setConcludedCounter: React.Dispatch<React.SetStateAction<number>>;
-	handleConcluded: (checkboxState: boolean, taskId: string) => void;
+	handleConcluded: (taskDescription: string) => void;
 }
 
 export function Task({
@@ -33,7 +33,7 @@ export function Task({
 				isChecked={checkboxState}
 				onPress={() => {
 					setCheckboxState(!checkboxState);
-					handleConcluded(taskIsConcluded, taskId);
+					handleConcluded(taskDescription);
 				}}
 				text={taskDescription}
 				textStyle={{
