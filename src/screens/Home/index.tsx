@@ -9,7 +9,6 @@ import { styles } from './style';
 export function Home() {
 	const [tasks, setTasks] = useState<string[]>([]);
 	const [inputText, setInputText] = useState('');
-	const [created, setCreated] = useState(0);
 	const [checkboxState, setCheckboxState] = useState(false);
 
 	const [completedTask, setCompletedTask] = useState<string[]>([]);
@@ -22,7 +21,6 @@ export function Home() {
 		if (inputText.trim() !== '') {
 			setTasks([...tasks, inputText]);
 			setInputText('');
-			setCreated(tasks.length + 1);
 			setCheckboxState(false);
 		} else {
 			Alert.alert('Campo vazio', 'Você não pode adicionar uma tarefa vazia.');
@@ -47,7 +45,6 @@ export function Home() {
 		setTasks((prevState) =>
 			prevState.filter((task) => task !== taskDescription)
 		);
-		setCreated(tasks.length - 1);
 		setCompletedTask((prevState) =>
 			prevState.filter((task) => task !== taskDescription)
 		);
