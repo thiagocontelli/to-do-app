@@ -10,7 +10,6 @@ export function Home() {
 	const [tasks, setTasks] = useState<string[]>([]);
 	const [inputText, setInputText] = useState('');
 	const [checkboxState, setCheckboxState] = useState(false);
-
 	const [completedTask, setCompletedTask] = useState<string[]>([]);
 
 	function onInputChange(text: string) {
@@ -18,11 +17,21 @@ export function Home() {
 	}
 
 	function handleAddTask() {
-		if (inputText.trim() !== '') {
-			setTasks([...tasks, inputText]);
+		if (inputText.trim() !== '' && !tasks.includes(inputText)) {
+			setTasks([...tasks, inputText.trim()]);
 			setInputText('');
 			setCheckboxState(false);
-		} else {
+		}
+
+		if (tasks.includes(inputText)) {
+			Alert.alert(
+				'Tarefa já existe',
+				'Você não pode adicionar uma tarefa que já existe.'
+			);
+			setInputText('');
+		}
+
+		if (inputText.trim() === '') {
 			Alert.alert('Campo vazio', 'Você não pode adicionar uma tarefa vazia.');
 			setInputText('');
 		}
